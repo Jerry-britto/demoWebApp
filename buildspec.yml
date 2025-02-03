@@ -1,22 +1,24 @@
 version: 0.2
+
 phases:
   install:
+    runtime-versions:
+      nodejs: 16
     commands:
       - echo "Installing dependencies..."
       - npm install
   pre_build:
     commands:
       - echo "Running Linting..."
-      - npx eslint .
+      - npm run lint
       - echo "Running Tests..."
       - npm test
   build:
     commands:
-      - echo "Build Successful!"
+      - echo "Building Application..."
   post_build:
     commands:
-      - echo "Triggering AWS CodeDeploy..."
-      - aws deploy create-deployment \
-        --application-name MyApp \
-        --deployment-group-name MyDeploymentGroup \
-        --github-location repository-name:main
+      - echo "Build Completed Successfully."
+artifacts:
+  files:
+    - '**/*'
