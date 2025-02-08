@@ -7,18 +7,23 @@ phases:
     commands:
       - echo "Installing dependencies..."
       - npm install
+
   pre_build:
     commands:
+      - echo "Running Pre-Build Steps..."
+      
+  build:
+    commands:
+      - echo "Building Application..."
       - echo "Running Linting..."
       # - npm run lint
       - echo "Running Tests..."
       - npm test
-  build:
-    commands:
-      - echo "Building Application..."
+
   post_build:
     commands:
       - echo "Build Completed Successfully."
+
 artifacts:
   files:
     - '**/*'
