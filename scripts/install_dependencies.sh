@@ -1,9 +1,13 @@
 #!/bin/bash
 
-source ~/.bashrc  # Load NVM
+# Load NVM and Node.js (Fixes "npm: command not found" error)
+export NVM_DIR="$HOME/.nvm"
+source "$NVM_DIR/nvm.sh"
 
-cd /home/ubuntu/app
 echo "Installing dependencies for Deployment..."
 
-rm -rf node_modules package-lock.json  # Ensures clean install
-npm ci  # Ensures exact versions from package-lock.json
+# Install project dependencies
+cd /home/ubuntu/app
+npm install --production
+
+echo "Dependencies installed successfully!"
