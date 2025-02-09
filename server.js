@@ -11,7 +11,7 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/health",(_,res)=>{
-  res.send("<h1>Everything is ok what about you</h1>");
+  res.send("<h1>Everything is ok what about you is everything fine</h1>");
 })
 
 if (require.main === module) {
