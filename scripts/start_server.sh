@@ -6,7 +6,7 @@ cd /home/ubuntu/app
 source ~/.bashrc  # Load NVM
 
 echo "Starting Node.js server using PM2..."
-pm2 start server.js --name myapp --watch  # Starts app & auto-restarts on crash
-pm2 save  # Saves PM2 state
+pm2 start server.js --name myapp --watch || pm2 restart myapp
+pm2 save
 
 echo "Application started successfully."

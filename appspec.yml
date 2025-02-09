@@ -1,20 +1,21 @@
 version: 0.0
 os: linux
+
 files:
   - source: /
     destination: /home/ubuntu/app
 
 hooks:
-  ApplicationStop:  # Stop running application first
+  BeforeInstall: 
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: ubuntu
+
+  ApplicationStop: 
     - location: scripts/stop_server.sh
       timeout: 60
       runas: ubuntu
 
-  BeforeInstall:  # Then, install dependencies and set up environment
-    - location: scripts/before_install.sh
-      timeout: 300
-      runas: ubuntu
-  
   AfterInstall:
     - location: scripts/install_dependencies.sh
       timeout: 120

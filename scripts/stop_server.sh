@@ -1,10 +1,11 @@
 #!/bin/bash
 
 echo "Stopping Node.js servers using PM2..."
-if pgrep -x "node" > /dev/null; then
-    pm2 stop all
-    pm2 delete all  # Ensures all PM2 processes are properly removed
-    echo "All Node.js servers stopped."
+
+if pm2 list | grep -q "myapp"; then
+    pm2 stop myapp
+    pm2 delete myapp  # Ensures PM2 process is properly removed
+    echo "Application 'myapp' stopped and removed."
 else
-    echo "No running Node.js servers found."
+    echo "No running application found in PM2."
 fi
