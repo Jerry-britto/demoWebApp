@@ -2,9 +2,15 @@
 
 echo "Stopping Node.js servers using PM2..."
 
-if pm2 list | grep -q "myapp"; then
-    pm2 stop myapp
-    pm2 delete myapp  # Ensures PM2 process is properly removed
+# Load NVM
+export NVM_DIR="$HOME/.nvm"
+source "$NVM_DIR/nvm.sh"    
+
+PM2_EXEC=$(which pm2)
+
+if $PM2_EXEC list | grep -q "myapp"; then
+    $PM2_EXEC stop myapp
+    $PM2_EXEC delete myapp
     echo "Application 'myapp' stopped and removed."
 else
     echo "No running application found in PM2."

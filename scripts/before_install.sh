@@ -3,25 +3,30 @@
 # Ensure script runs with sudo privileges
 sudo -v
 
+# Load NVM if already installed
+if [ -d "$HOME/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    source "$NVM_DIR/nvm.sh"
+fi
+
 # Install Node.js via NVM if not installed
-if ! command -v node &> /dev/null; then
+if ! command -v node &>/dev/null; then
     echo "Node.js not found. Installing NVM and Node.js..."
     
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
     export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    source "$NVM_DIR/nvm.sh"
 
-    nvm install node
-    nvm use node
+    nvm install
+    nvm use
 else
     echo "Node.js is already installed."
 fi
 
-# Install PM2 globally with sudo access
-if ! command -v pm2 &> /dev/null; then
+# Install PM2 globally
+if ! command -v pm2 &>/dev/null; then
     echo "PM2 not found. Installing PM2..."
-    sudo npm install -g pm2
+    npm install -g pm2
 else
     echo "PM2 is already installed."
 fi
