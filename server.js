@@ -14,6 +14,20 @@ app.get("/health",(_,res)=>{
   res.send("<h1>Everything is ok what about you is everything fine</h1>");
 })
 
+app.get('/products', (req, res) => {
+  res.send([
+    {
+      productId: '101',
+      price: 100
+    },
+    {
+      productId: '102',
+      price: 150
+    }
+  ])
+})
+
+
 if (require.main === module) {
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
