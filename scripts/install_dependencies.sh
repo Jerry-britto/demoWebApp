@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Load NVM and Node.js (Fixes "npm: command not found" error)
+# Load NVM and Node.js
 export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"
 

@@ -10,6 +10,10 @@ app.get("/api", (req, res) => {
   res.json({ message: "This is an API response!" });
 });
 
+app.get("/health",(_,res)=>{
+  res.send("<h1>Everything is ok</h1>");
+})
+
 if (require.main === module) {
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
